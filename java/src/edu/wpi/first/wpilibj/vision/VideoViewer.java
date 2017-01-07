@@ -1,4 +1,4 @@
-package grip.util;
+package edu.wpi.first.wpilibj.vision;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
