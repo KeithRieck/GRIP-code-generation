@@ -33,8 +33,7 @@ public class GripRunner<P extends VisionPipeline> {
 	 * Listener interface for a callback that should run after a pipeline has
 	 * processed its input.
 	 *
-	 * @param <P>
-	 *            the type of the pipeline this listener is for
+	 * @param <P> the type of the pipeline this listener is for
 	 */
 	@FunctionalInterface
 	public interface Listener<P extends VisionPipeline> {
@@ -60,12 +59,9 @@ public class GripRunner<P extends VisionPipeline> {
 	 * {@code listener} when the pipeline has finished to alert user code when
 	 * it is safe to access the pipeline's outputs.
 	 *
-	 * @param camera
-	 *            the video source to use to supply images for the pipeline
-	 * @param pipeline
-	 *            the vision pipeline to run
-	 * @param listener
-	 *            a function to call after the pipeline has finished running
+	 * @param camera the video source to use to supply images for the pipeline
+	 * @param pipeline the vision pipeline to run
+	 * @param listener a function to call after the pipeline has finished running
 	 */
 	public GripRunner(VideoCapture camera, P pipeline, Listener<? super P> listener) {
 		this.m_pipeline = pipeline;
@@ -90,20 +86,16 @@ public class GripRunner<P extends VisionPipeline> {
 	public void runOnce() {
 		m_cvSink.read(m_image);
 		m_pipeline.process(m_image);
-		m_listener.copyPipelineOutputs(m_pipeline);
+		if (m_listener != null) { 
+			m_listener.copyPipelineOutputs(m_pipeline); 
+		}
 	}
 
 	/**
 	 * A convenience method that calls {@link #runOnce()} in an infinite loop.
 	 * This must be run in a dedicated thread, and cannot be used in the main
 	 * robot thread because it will freeze the robot program.
-	 *
-	 * <p>
-	 * <strong>Do not call this method directly from the main thread.</strong>
-	 * </p>
-	 *
-	 * @throws IllegalStateException
-	 *             if this is called from the main robot thread
+	 * 
 	 * @see VisionThread
 	 */
 	public void runForever() {
@@ -114,6 +106,7 @@ public class GripRunner<P extends VisionPipeline> {
 
 	/**
 	 * Make a connection to a camera.
+	 * 
 	 * @param device  Camera number.
 	 * @param width  Window width in pixels.
 	 * @param height Window height in pixels.
@@ -137,6 +130,7 @@ public class GripRunner<P extends VisionPipeline> {
 	
 	/**
 	 * Make a GUI window on which to display a {@link Mat} image.
+	 * 
 	 * @param title Title on the window.
 	 * @param width  Window width in pixels.
 	 * @param height Window height in pixels.
