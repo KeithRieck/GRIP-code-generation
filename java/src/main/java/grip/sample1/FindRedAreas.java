@@ -1,4 +1,4 @@
-package grip.samples;
+package grip.sample1;
 
 import java.io.File;
 import java.io.FileWriter;

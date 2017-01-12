@@ -1,4 +1,4 @@
-package grip.samples;
+package grip.sample1;
 
 import static edu.wpi.first.wpilibj.vision.GripRunner.makeCamera;
 import static edu.wpi.first.wpilibj.vision.GripRunner.makeWindow;

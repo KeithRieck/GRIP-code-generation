@@ -148,7 +148,7 @@
     <className>FindRedAreas</className>
     <implementWpilibPipeline>true</implementWpilibPipeline>
     <saveDir>/Users/keith/Documents/workspace_opencv/GRIP-code-generation/java/src/grip/samples</saveDir>
-    <packageName>grip.samples</packageName>
+    <packageName>grip.sample1</packageName>
     <moduleName>grip</moduleName>
   </codeGenerationSettings>
 </grip:Pipeline>

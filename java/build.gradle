@@ -1,0 +1,12 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "grip.sample1.FindRedAreasApp"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.0.0-1.1'
+}
