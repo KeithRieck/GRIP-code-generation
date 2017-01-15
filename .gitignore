@@ -5,3 +5,6 @@
 /java/target/
 /java/.gradle/
 /.classpath
+/java/build/
+/java/bin/
+.DS_Store

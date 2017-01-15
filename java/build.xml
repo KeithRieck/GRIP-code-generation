@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="grip_sample1" basedir="." default="jar">
+    <property name="source.dir"     value="src/main/java"/>
+    <property name="lib.dir"        value="lib"/>
+	<property name="build.dir"      value="build"/>
+    <property name="tmp.dir"        value="${build.dir}/tmp"/>
+    <property name="class.dir"      value="${tmp.dir}/jar"/>
+    <property name="jar.file"       value="${build.dir}/${ant.project.name}.jar"/>
+    <property name="main-class"     value="grip.sample1.FindRedAreasApp"/>
+
+    <path id="libraries.path">    
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean" description="delete old files">
+        <delete dir="${tmp.dir}"/>
+        <delete file="${jar.file}"/>
+    </target>
+
+    <target name="compile" description="build class files" depends="clean">
+        <mkdir dir="${class.dir}"/>
+        <javac srcdir="${source.dir}" destdir="${class.dir}">
+            <classpath refid="libraries.path"/>
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+    	<unzip dest="${class.dir}">
+    	    <patternset>
+    	        <exclude name="**/MANIFEST.MF"/>
+    	    </patternset>
+    	    <fileset dir="${lib.dir}">
+    	        <include name="*.jar"/>
+    	    </fileset>
+    	</unzip>
+        <jar destfile="${jar.file}" basedir="${class.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+            </manifest>
+        </jar>  
+    </target>
+
+    <target name="run" depends="jar">
+        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+    </target>
+
+</project>
