@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="grip_sample1" basedir="." default="jar">
+	<property environment="env"/>
     <property name="source.dir"     value="src/main/java"/>
     <property name="lib.dir"        value="lib"/>
 	<property name="build.dir"      value="build"/>
@@ -27,7 +28,7 @@
     </target>
 
     <target name="jar" depends="compile">
-        <mkdir dir="${jar.dir}"/>
+        <mkdir dir="${class.dir}"/>
     	<unzip dest="${class.dir}">
     	    <patternset>
     	        <exclude name="**/MANIFEST.MF"/>
@@ -44,7 +45,10 @@
     </target>
 
     <target name="run" depends="jar">
-        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+    	<echo message="java -Djava.library.path=${env.OPENCV_HOME}/lib -jar ${jar.file}"/>
+        <java jar="${jar.file}" fork="true">
+        	<sysproperty key="java.library.path" path="${env.OPENCV_HOME}/lib"/>
+        </java>
     </target>
 
 </project>
