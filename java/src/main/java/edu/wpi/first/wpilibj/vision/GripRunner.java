@@ -23,11 +23,17 @@ public class GripRunner<P extends VisionPipeline> {
 	static {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 	}
+	
+	public static final boolean DEBUG = Boolean.valueOf(System.getProperty("debug", "false"));
+	public static final boolean HEADLESS = Boolean.valueOf(System.getProperty("headless", "false"));
+	final static int FRAME_COUNT_SPAN = 3;
 
 	private final VideoCapture m_cvSink;
 	private final P m_pipeline;
 	private final Mat m_image = new Mat();
 	private final Listener<? super P> m_listener;
+	private int frameCount = 0;
+	private long frameCountTimeout = System.currentTimeMillis() + 1000L * FRAME_COUNT_SPAN;
 
 	/**
 	 * Listener interface for a callback that should run after a pipeline has
@@ -101,6 +107,14 @@ public class GripRunner<P extends VisionPipeline> {
 	public void runForever() {
 		while (true) {
 			runOnce();
+			if (DEBUG)  {
+				frameCount++;	
+				if (System.currentTimeMillis() > frameCountTimeout)  {
+					System.out.println("fps: " + (frameCount / FRAME_COUNT_SPAN));
+					frameCount = 0;
+					frameCountTimeout = System.currentTimeMillis() + 1000L * FRAME_COUNT_SPAN;
+				}
+			}
 		}
 	}
 
@@ -137,6 +151,7 @@ public class GripRunner<P extends VisionPipeline> {
 	 * @return a new {@link VideoViewer}
 	 */
 	public static VideoViewer makeWindow(String title, int width, int height)  {
+		if (HEADLESS)  { return null; }
 		return new VideoViewer("GRIP", width, height);
 	}
 
