@@ -48,9 +48,9 @@
     </target>
 
     <target name="run" depends="jar">
-    	<echo message="java -Djava.library.path=${env.OPENCV_HOME}/lib -jar ${jar.file}"/>
+    	<echo message="java -Djava.library.path=${env.OPENCV_LIB} -jar ${jar.file}"/>
         <java jar="${jar.file}" fork="true">
-        	<sysproperty key="java.library.path" path="${env.OPENCV_HOME}/lib"/>
+        	<sysproperty key="java.library.path" path="${env.OPENCV_LIB}"/>
         </java>
     </target>
 
