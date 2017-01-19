@@ -1,6 +1,6 @@
 # Java samples and code
 
-To get this sample to run, you must [install OpenCV](http://opencv.org/downloads.html) on your local machine. You will need [Apache Ant](http://ant.apache.org) to build the sample JAR file.  
+To get this sample to run, you must [install OpenCV](http://opencv.org/downloads.html) on your local machine. You will need [Apache Ant](http://ant.apache.org) to build the executable JAR file app.  
 
 Your environment should define the following environment variables:
 
@@ -10,7 +10,9 @@ Your environment should define the following environment variables:
 * OPENCV_LIB = the directory containing all native libraries
 * OPENCV_JAR = the path to the JAR file containing the java interface to OpenCV (typically named something like "opencv-320.jar" )
 
-Execute the code by changing to the directory for GRIP-code-generation/java and then executing "ant run".
+Execute the code by changing to the directory for GRIP-code-generation/java and then executing "ant run".   Or, can can run the application by executing:
+
+`java -Djava.library.path=${OPENCV_LIB} -jar build/grip_sample1.jar`
 
 ## Installing OpenCV on Windows
 
@@ -38,6 +40,6 @@ Just like in Linux, the environment variables defined in your `.bash_profile` sh
 
 ## Using OpenCV in Eclipse
 
-In Eclipse you should define a User Library OpenCV.  Open the Eclipse preferences dialog and go to Java / Build Path / User Libraries.  Create a new User Library named "opencv-3.2.0". To this library, attach 'opencv-320.jar' as an external JAR.  Then, expand that JAR reference and specify the Native Library Location to be your OPENCV\_LIB directory.
+In Eclipse you should [define a "User Library" for OpenCV](http://docs.opencv.org/2.4/doc/tutorials/introduction/java_eclipse/java_eclipse.html).  Open the Eclipse preferences dialog and go to Java / Build Path / User Libraries.  Create a new User Library named "opencv-3.2.0". To this library, attach 'opencv-320.jar' as an external JAR.  Then, expand that JAR reference and specify the Native Library Location to be your OPENCV\_LIB directory.
 
 To use OpenCV in a Eclipse Java project, open the project's properties dialog and add the new user library to the Java Build Path Libraries.
