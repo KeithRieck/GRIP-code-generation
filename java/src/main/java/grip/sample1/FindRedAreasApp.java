@@ -13,13 +13,13 @@ public class FindRedAreasApp {
 	static final int IMG_HEIGHT = 240;
 
 	final VideoViewer window;
-	final Listener<? super FindRedAreas> listener;
+	final Listener<FindRedAreas> listener;
 	final GripRunner<FindRedAreas> gripRunner;
 	
 	public FindRedAreasApp() {
 		this.window = makeWindow("GRIP", IMG_WIDTH, IMG_HEIGHT);
 		this.listener = (this.window!=null) ? (processor -> { window.imshow(processor.rgbThresholdOutput());}) : null;
-		this.gripRunner = new GripRunner<FindRedAreas>(
+		this.gripRunner = new GripRunner<>(
 				makeCamera(0, IMG_WIDTH, IMG_HEIGHT, -1.0), 
 				new FindRedAreas(), 
 				listener);

@@ -105,7 +105,7 @@ public class GripRunner<P extends VisionPipeline> {
 	 * @see VisionThread
 	 */
 	public void runForever() {
-		while (true) {
+		while (!Thread.currentThread().isInterrupted()) {
 			runOnce();
 			if (DEBUG)  {
 				frameCount++;	
