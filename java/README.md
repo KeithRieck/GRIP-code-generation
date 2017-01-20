@@ -26,7 +26,7 @@ If this tool doesn't work for your deployment setup (or if you want to use a ver
 
 ## Installing OpenCV on Windows
 
-Windows has the easiest install, because the OpenCV site has everything precompiled.
+Windows is the easiest install, because the OpenCV site has everything precompiled.
 
 Download and unzip [OpenCV for Windows](http://opencv.org/downloads.html).
 * OPENCV\_JAR will be at `${OPENCV_HOME}/build/java/opencv-320.jar`
